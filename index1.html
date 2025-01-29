@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="styles.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a website for one and only you</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .question {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Welcome,sagarika(motti)🤰🤰🤰</h1>
+        <p>This is a special journey for you! Answer all question to unlock a surprise.</p>
+
+        <div class="photos">
+            <img src="sabu1.jpg" alt="Photo 1">
+            <img src="sabu2.jpg" alt="Photo 2">
+            <img src="sabu3.jpg" alt="Photo 3">
+            <img src="sabu4.jpg" alt="Photo 4">
+        </div>
+
+    <div id="quiz-container">
+        <div id="question-container"></div>
+        <div id="result" class="hidden"></div>
+    </div>
+
+    <script>
+        const questions = [
+            { text: "What is your animal version (from my perspective)? 🐕🐈", options: ["Dog 🐕", "Cat 🐈"], correct: "Dog 🐕" },
+            { text: "What is your favorite place (from my perspective)? 🏔️🏖️", options: ["Mountain 🏔️", "Beach 🏖️"], correct: "Mountain 🏔️" },
+            { text: "What is your favorite color (from my perspective)? 🖤💗", options: ["Black 🖤", "Pink 💗"], correct: "Black 🖤" },
+            { text: "What is your favorite food (from my perspective)? 🍕🍔😏", options: ["Pizza 🍕", "Burger 🍔", "Me 😏"], correct: "Me 😏" },
+            { text: "What is your favorite season (from my perspective)? 🌸🍂", options: ["Spring 🌸", "Autumn 🍂"], correct: "Autumn 🍂" },
+            { text: "What is your favorite movie genre (from my perspective)? 🎬🍿", options: ["Action 🎬", "Comedy 🍿", "Horror 👻"], correct: "Horror 👻" },
+            { text: "What is your favorite flower (from my perspective)? 🌹🌻", options: ["Rose 🌹", "Sunflower 🌻"], correct: "Rose 🌹" },
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function showQuestion(index) {
+            const question = questions[index];
+            const questionContainer = document.getElementById('question-container');
+            questionContainer.innerHTML = `
+                <div class="question">
+                    <p>${question.text}</p>
+                    <div>
+                        ${question.options.map((option, i) => `
+                            <button onclick="checkAnswer('${option}')">${option}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkAnswer(selectedAnswer) {
+            const correctAnswer = questions[currentQuestionIndex].correct;
+
+            if (selectedAnswer === correctAnswer) {
+                currentQuestionIndex++;
+
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion(currentQuestionIndex); // Show next question
+                } else {
+                    endQuiz(); // End the quiz after the last question
+                }
+            } else {
+                alert("Incorrect answer! Try again."); // Show an alert if the answer is incorrect
+            }
+        }
+
+        function endQuiz() {
+            const result = document.getElementById('result');
+            result.classList.remove('hidden');
+            result.innerHTML = "Happy Birthday, my dearest best friend!\
+                                You bring so much joy, love, and laughter into my life,\
+                                and I am beyond grateful for you.\
+                                May this year be filled with happiness, success, and\
+                                everything your heart desires. You deserve the world!\
+                                Love you always!";
+
+            document.getElementById('question-container').classList.add('hidden');
+        }
+
+        // Initial call to show the first question
+        showQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
